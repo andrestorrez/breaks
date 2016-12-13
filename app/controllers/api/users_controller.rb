@@ -2,7 +2,7 @@ class Api::UsersController < ApiController
 	before_action :authenticate_user!
 
 	def index
-		render json: @current_user.teams.first.users.where.not(id: @current_user.id).to_json
+		render json: @current_user.teams.first.users.where.not(id: @current_user.id).order(id: :asc).to_json
 	end
 
 	def add_member

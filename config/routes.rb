@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 	  		get "index"
 	  		post "add_member"
 	  	end
+	  	namespace :requests do
+	  		get "index"
+	  		post "create"
+	  		put "update/:id", action: :update
+	  	end
 	  end
 
   	namespace :auth do
