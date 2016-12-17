@@ -33,7 +33,7 @@ class User < ApplicationRecord
     end
 
     def set_days_available
-      if (total = Time.now.year - start_working_day.year) && user?
+      if user? && (total = Time.now.year - start_working_date.year)
         case total
         when 1
           available_days = 10
