@@ -17,6 +17,15 @@ class Api::UsersController < ApiController
   	end
   end
 
+  def save_token
+  	account = Account.find_by(access_token: params[:access_token])
+  	if !account && @current_user.accounts.create(access_token: params[:access_token])
+  		render json: {message: "Account added to user"}
+  	else
+  		render json: {message: "Account not already exists"}, status: 422
+  	end
+  end
+
   private
   	def user_admin_params
   		params.require(:user).permit :email, :password, :role, :start_working_date

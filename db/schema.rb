@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213210459) do
+ActiveRecord::Schema.define(version: 20170109183229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.text     "access_token"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -76,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161213210459) do
     t.index ["user_id"], name: "index_vacation_requests_on_user_id", using: :btree
   end
 
+  add_foreign_key "accounts", "users"
   add_foreign_key "teams", "countries"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"

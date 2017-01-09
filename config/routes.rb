@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 	  	namespace :users do
 	  		get "index"
 	  		post "add_member"
+	  		post "save_token"
 	  	end
 	  	namespace :requests do
 	  		get "index"
